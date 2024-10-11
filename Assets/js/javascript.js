@@ -1,6 +1,6 @@
 // Función para crear las barras de habilidades
 function crearBarra(id_barra) {
-    if (id_barra) { 
+    if (id_barra) {
         for (let i = 0; i <= 16; i++) {
             let div = document.createElement("div");
             div.className = "e";
@@ -11,17 +11,17 @@ function crearBarra(id_barra) {
     }
 }
 
-
 document.addEventListener("DOMContentLoaded", function() {
+    // Selecciona el formulario con la clase de validación de Bootstrap
     const form = document.querySelector('.needs-validation');
 
     form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Evita el envío por defecto para poder validar primero
+        event.preventDefault();
         event.stopPropagation();
 
         // Verifica si el formulario es válido
         if (form.checkValidity()) {
-            // Si es válido, muestra la alerta de confirmación antes de enviar
+            // Alerta de confirmación con SweetAlert antes de enviar
             Swal.fire({
                 icon: 'info',
                 title: 'Enviando...',
@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 showConfirmButton: false,
                 timer: 2000
             }).then(() => {
-                // Envía el formulario automáticamente una vez que la alerta ha sido mostrada
-                form.submit();
+                // Aquí deberías llamar a la función de envío de email si estás utilizando EmailJS
+                enviarCorreo();
             });
         } else {
-            // Si el formulario no es válido, muestra una alerta de advertencia
+            // Alerta de advertencia si el formulario no es válido
             Swal.fire({
                 icon: 'warning',
                 title: 'Formulario incompleto',
@@ -42,8 +42,19 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
 
-        form.classList.add('was-validated'); // Añade la clase de validación de Bootstrap
+        form.classList.add('was-validated');
     });
+
+    // Inicialización de las barras de habilidades
+    const html = document.getElementById("html");
+    const javascript = document.getElementById("javascript");
+    const python = document.getElementById("python");
+    const aws = document.getElementById("aws");
+
+    crearBarra(html);
+    crearBarra(javascript);
+    crearBarra(python);
+    crearBarra(aws);
 });
 
 // Variables y funciones para la animación de las barras de habilidades
@@ -51,10 +62,19 @@ let contadores = [-1, -1, -1, -1, -1, -1];
 let entro = false;
 
 function efectoHabilidades() {
-    var habilidades = document.getElementById("habilidades");
-    var distancia_skills = window.innerHeight - habilidades.getBoundingClientRect().top;
+    const habilidades = document.getElementById("habilidades");
+    if (!habilidades) return;
+
+    const distancia_skills = window.innerHeight - habilidades.getBoundingClientRect().top;
     if (distancia_skills >= 300 && !entro) {
         entro = true;
+
+        // Definir los elementos de barra antes de pintar
+        const html = document.getElementById("html");
+        const javascript = document.getElementById("javascript");
+        const python = document.getElementById("python");
+        const aws = document.getElementById("aws");
+
         const intervalHtml = setInterval(function() {
             pintarBarra(html, 15, 0, intervalHtml);
         }, 100);
@@ -73,10 +93,22 @@ function efectoHabilidades() {
 function pintarBarra(id_barra, cantidad, indice, interval) {
     contadores[indice]++;
     let x = contadores[indice];
-    if (x < cantidad) {
-        let elementos = id_barra.getElementsByClassName("e");
-        elementos[x].style.backgroundColor = "gray";
+
+    // Verificar si los elementos y la barra existen
+    if (id_barra) {
+        const elementos = id_barra.getElementsByClassName("e");
+        if (elementos[x]) {
+            elementos[x].style.backgroundColor = "gray";
+        } else {
+            clearInterval(interval);
+        }
     } else {
+        console.error("No se encontró el elemento de la barra.");
+        clearInterval(interval);
+    }
+
+    // Detener el intervalo si se alcanza la cantidad máxima
+    if (x >= cantidad) {
         clearInterval(interval);
     }
 }
@@ -85,3 +117,5 @@ function pintarBarra(id_barra, cantidad, indice, interval) {
 window.onscroll = function() {
     efectoHabilidades();
 };
+
+
