@@ -29,8 +29,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 showConfirmButton: false,
                 timer: 2000
             }).then(() => {
-                // Aquí deberías llamar a la función de envío de email si estás utilizando EmailJS
-                enviarCorreo();
+                // Envía el formulario una vez que la alerta ha sido mostrada
+                form.submit();
+                
+                // Muestra la alerta de éxito después de enviar
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Mensaje enviado!',
+                    text: 'Tu mensaje ha sido enviado con éxito. Pronto nos pondremos en contacto contigo.',
+                    confirmButtonText: 'Aceptar'
+                });
             });
         } else {
             // Alerta de advertencia si el formulario no es válido
@@ -42,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
 
-        form.classList.add('was-validated');
+        form.classList.add('was-validated'); // Añade la clase de validación de Bootstrap
     });
 
     // Inicialización de las barras de habilidades
@@ -55,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
     crearBarra(javascript);
     crearBarra(python);
     crearBarra(aws);
-});
+}); 
 
 // Variables y funciones para la animación de las barras de habilidades
 let contadores = [-1, -1, -1, -1, -1, -1];
