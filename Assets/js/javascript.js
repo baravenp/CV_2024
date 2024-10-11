@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
     crearBarra(aws);
 
     // Inicializar EmailJS
-    emailjs.init('yRoTIsbIs4tT7OgTE'); // Reemplaza con tu User ID de EmailJS
+    emailjs.init('yRoTlsbIs4tT7OgTE'); // Reemplaza con tu User ID de EmailJS
 
     // Selecciona el formulario con la clase de validación de Bootstrap
     const form = document.querySelector('.needs-validation');
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
             };
 
             // Envía el correo usando EmailJS
-            emailjs.send('service_cr7foqi', 'template_ct350z9', templateParams)
+            emailjs.send('service_wgg6vke', 'template_ct350z9', templateParams)
                 .then(function (response) {
                     // Mostrar alerta de éxito con SweetAlert2
                     Swal.fire({
