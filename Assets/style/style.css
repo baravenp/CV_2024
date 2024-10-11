@@ -1,0 +1,192 @@
+/* GENERALES */
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Inconsolata', monospace;
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    font-family: 'Inconsolata', monospace;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+header h1, header p {
+    margin: 0;
+    padding: 5px;
+}
+
+header h1 {
+    font-size: 2em;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile p {
+    font-size: 1.1em;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+section h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    font-size: 1.5em;
+}
+footer {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9em;
+}
+/* ANIMACION TYPING */
+.typing-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.container__typing {
+    position: relative;
+    display: block;
+    width: 100%;
+    animation: typing 7s steps(60, end) 1s 1 normal both, blink-caret 0.75s step-end infinite;
+    white-space: nowrap;
+    color: #000;
+    border-right: 3px solid;
+}
+
+.typing-line {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block; 
+    width: 100%;
+}
+
+/* Animación del typing */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: black; }
+}
+/* SECCION PROYECTOS */
+.card {
+    width: 18rem;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; 
+}
+
+.card-body {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    flex-grow: 1;
+}
+
+.btn-secondary {
+    align-self: start;
+    margin-top: 10px;
+}
+/* SECCION HABILIDADES */
+.habilidades{
+    padding: 80px 0 100px 0;
+    text-align: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    color: black;
+}
+.habilidades .contenido-seccion{
+    max-width: 1000px;
+    margin: auto;
+    padding: 0 10px;
+}
+.habilidades .contenido-seccion .row{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.habilidades .contenido-seccion .row .col{
+    width: 47%;
+    text-align: left;
+}
+.habilidades .contenido-seccion .row .col .connt-barra{
+    display: flex;
+    align-items: center;
+}
+.habilidades .contenido-seccion .barra{
+    display: flex;
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+.habilidades .contenido-seccion .barra .e{
+    background-color: #363636;
+    width: 20px;
+    height: 30px;
+    margin-right: 2px;
+}
+/* SECCIÓN CONTACTO */
+.contacto {
+    padding: 80px 0 100px 0;
+    text-align: center;
+    background-color: #f9f9f9; 
+    color: #333;
+}
+
+.contacto h2 {
+    margin-bottom: 40px;
+    font-size: 2em;
+}

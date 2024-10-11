@@ -1,0 +1,45 @@
+
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+nav{
+    margin: 0%;
+    padding: 0%;
+    background-color: #051B54;
+}
+.navbar-brand{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+}
+.container-fluid{
+    background-color:#051B54 ;
+    color: white;
+}
+.nav-link{
+    color: white;
+}
+.btn-outline{
+    background-color:  #FFFFFF33;
+    color: white;
+    border-radius: 25px;
+}
+.container-banner{
+    background-color: #62DAD3;
+    border-radius: 10px;
+    border: 2px solid turquoise;
+
+}
+img{
+ height: 425px;
+ width: 660px;
+ margin-left: 40px;
+}
+.container-form{
+    border: 1px solid rgb(215, 215, 215);
+    border-radius: 5px;
+    color: #051B54;
+    background-color: rgb(212, 212, 212);
+    
+}
