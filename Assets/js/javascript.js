@@ -11,66 +11,29 @@ function crearBarra(id_barra) {
     }
 }
 
-// Función para inicializar las barras de habilidades al cargar la página
+
 document.addEventListener("DOMContentLoaded", function() {
-    let html = document.getElementById("html");
-    crearBarra(html);
-    let javascript = document.getElementById("javascript");
-    crearBarra(javascript);
-    let python = document.getElementById("python");
-    crearBarra(python);
-    let aws = document.getElementById("aws");
-    crearBarra(aws);
-
-    // Inicializar EmailJS
-    emailjs.init('yRoTlsbIs4tT7OgTE'); // Reemplaza con tu User ID de EmailJS
-
-    // Selecciona el formulario con la clase de validación de Bootstrap
     const form = document.querySelector('.needs-validation');
 
-    // Añade el evento 'submit' al formulario
     form.addEventListener('submit', function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Evita el envío por defecto para poder validar primero
         event.stopPropagation();
 
         // Verifica si el formulario es válido
         if (form.checkValidity()) {
-            // Obtén los valores de los campos
-            const nombre = document.getElementById('nombre').value;
-            const email = document.getElementById('email').value;
-            const asunto = document.getElementById('asunto').value;
-            const mensaje = document.getElementById('mensaje').value;
-
-            // Crea el objeto con los parámetros
-            const templateParams = {
-                from_name: nombre,
-                reply_to: email,
-                subject: asunto,
-                message: mensaje
-            };
-
-            // Envía el correo usando EmailJS
-            emailjs.send('service_wgg6vke', 'template_ct350z9', templateParams)
-                .then(function (response) {
-                    // Mostrar alerta de éxito con SweetAlert2
-                    Swal.fire({
-                        icon: 'success',
-                        title: '¡Correo enviado!',
-                        text: 'Tu mensaje ha sido enviado con éxito.',
-                        confirmButtonText: 'Aceptar'
-                    });
-                    form.reset(); // Resetea el formulario si el envío fue exitoso
-                }, function (error) {
-                    // Mostrar alerta de error con SweetAlert2
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Hubo un problema al enviar el correo. Por favor, inténtalo de nuevo.',
-                        confirmButtonText: 'Aceptar'
-                    });
-                });
+            // Si es válido, muestra la alerta de confirmación antes de enviar
+            Swal.fire({
+                icon: 'info',
+                title: 'Enviando...',
+                text: 'Tu mensaje está siendo enviado, por favor espera.',
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                // Envía el formulario automáticamente una vez que la alerta ha sido mostrada
+                form.submit();
+            });
         } else {
-            // Si el formulario no es válido, muestra los mensajes de validación de Bootstrap
+            // Si el formulario no es válido, muestra una alerta de advertencia
             Swal.fire({
                 icon: 'warning',
                 title: 'Formulario incompleto',
@@ -79,8 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
 
-        // Añade la clase 'was-validated' para mostrar los estilos de validación de Bootstrap
-        form.classList.add('was-validated');
+        form.classList.add('was-validated'); // Añade la clase de validación de Bootstrap
     });
 });
 
