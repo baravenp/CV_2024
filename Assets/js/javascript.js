@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 Swal.fire({
                     icon: 'success',
                     title: '¡Mensaje enviado!',
-                    text: 'Tu mensaje ha sido enviado con éxito. Pronto nos pondremos en contacto contigo.',
+                    text: 'Tu mensaje ha sido enviado con éxito. Pronto me pondré en contacto contigo ;).',
                     confirmButtonText: 'Aceptar'
                 });
             });
