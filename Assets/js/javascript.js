@@ -1,16 +1,3 @@
-// Función para crear las barras de habilidades
-function crearBarra(id_barra) {
-    if (id_barra) {
-        for (let i = 0; i <= 16; i++) {
-            let div = document.createElement("div");
-            div.className = "e";
-            id_barra.appendChild(div);
-        }
-    } else {
-        console.error("El ID proporcionado no existe en el DOM.");
-    }
-}
-
 document.addEventListener("DOMContentLoaded", function() {
     // Selecciona el formulario con la clase de validación de Bootstrap
     const form = document.querySelector('.needs-validation');
@@ -53,22 +40,61 @@ document.addEventListener("DOMContentLoaded", function() {
         form.classList.add('was-validated'); // Añade la clase de validación de Bootstrap
     });
 
-    // Inicialización de las barras de habilidades
-    const html = document.getElementById("html");
-    const javascript = document.getElementById("javascript");
-    const python = document.getElementById("python");
-    const aws = document.getElementById("aws");
+    // // Inicialización de las barras de habilidades
+    // const html = document.getElementById("html");
+    // const javascript = document.getElementById("javascript");
+    // const python = document.getElementById("python");
+    // const aws = document.getElementById("aws");
 
-    crearBarra(html);
-    crearBarra(javascript);
-    crearBarra(python);
-    crearBarra(aws);
+    // crearBarra(html);
+    // crearBarra(javascript);
+    // crearBarra(python);
+    // crearBarra(aws);
 }); 
 
 // Variables y funciones para la animación de las barras de habilidades
 let contadores = [-1, -1, -1, -1, -1, -1];
 let entro = false;
 
+// Función para crear las barras de habilidades
+function crearBarra(id_barra, total_bloques) {
+    if (id_barra) {
+        for (let i = 0; i < total_bloques; i++) {
+            let div = document.createElement("div");
+            div.className = "e";
+            id_barra.appendChild(div);
+        }
+    } else {
+        console.error("El ID proporcionado no existe en el DOM.");
+    }
+}
+
+// Función que rellena las barras según el porcentaje deseado
+function pintarBarra(id_barra, porcentaje, indice, interval) {
+    contadores[indice]++;
+    let x = contadores[indice];
+
+    if (id_barra) {
+        const elementos = id_barra.getElementsByClassName("e");
+        const totalElementos = elementos.length;
+        const elementosARellenar = Math.floor((porcentaje / 100) * totalElementos );
+
+        if (x < elementosARellenar) {
+            elementos[x].style.backgroundColor = "gray";
+        } else {
+            clearInterval(interval); // Detener el intervalo si ya se ha alcanzado el número de elementos a rellenar
+        }
+    } else {
+        console.error("No se encontró el elemento de la barra.");
+        clearInterval(interval);
+    }
+
+    if (x >= totalElementos) {
+        clearInterval(interval);
+    }
+}
+
+// Función para aplicar el efecto de las habilidades
 function efectoHabilidades() {
     const habilidades = document.getElementById("habilidades");
     if (!habilidades) return;
@@ -77,53 +103,44 @@ function efectoHabilidades() {
     if (distancia_skills >= 300 && !entro) {
         entro = true;
 
-        // Definir los elementos de barra antes de pintar
+        // Definir las barras con la cantidad de bloques deseada (aquí 16 por ejemplo)
+        const totalBloques = 18;
         const html = document.getElementById("html");
         const javascript = document.getElementById("javascript");
         const python = document.getElementById("python");
         const aws = document.getElementById("aws");
+        const java = document.getElementById("java");
 
+        crearBarra(html, totalBloques);
+        crearBarra(javascript, totalBloques);
+        crearBarra(python, totalBloques);
+        crearBarra(aws, totalBloques);
+        crearBarra(java, totalBloques);
+
+        // Llenar las barras según el porcentaje establecido
         const intervalHtml = setInterval(function() {
-            pintarBarra(html, 15, 0, intervalHtml);
+            pintarBarra(html, 90, 0, intervalHtml); // 80% para HTML
         }, 100);
         const intervalJavascript = setInterval(function() {
-            pintarBarra(javascript, 14, 1, intervalJavascript);
+            pintarBarra(javascript, 75, 1, intervalJavascript); // 70% para JavaScript
         }, 100);
         const intervalPython = setInterval(function() {
-            pintarBarra(python, 16, 2, intervalPython);
+            pintarBarra(python, 95, 2, intervalPython); // 85% para Python
         }, 100);
         const intervalAWS = setInterval(function() {
-            pintarBarra(aws, 15, 3, intervalAWS);
+            pintarBarra(aws, 85, 3, intervalAWS); // 80% para AWS
+        }, 100);
+        const intervaljava = setInterval(function() {
+            pintarBarra(java, 35, 4, intervaljava); // 80% para AWS
         }, 100);
     }
 }
 
-function pintarBarra(id_barra, cantidad, indice, interval) {
-    contadores[indice]++;
-    let x = contadores[indice];
-
-    // Verificar si los elementos y la barra existen
-    if (id_barra) {
-        const elementos = id_barra.getElementsByClassName("e");
-        if (elementos[x]) {
-            elementos[x].style.backgroundColor = "gray";
-        } else {
-            clearInterval(interval);
-        }
-    } else {
-        console.error("No se encontró el elemento de la barra.");
-        clearInterval(interval);
-    }
-
-    // Detener el intervalo si se alcanza la cantidad máxima
-    if (x >= cantidad) {
-        clearInterval(interval);
-    }
-}
-
-// Detectar el scrolling del mouse para aplicar la animación de la barra
+// Detectar el scrolling para activar la animación
 window.onscroll = function() {
     efectoHabilidades();
 };
+
+
 
 

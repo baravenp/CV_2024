@@ -1,12 +1,16 @@
-/* GENERALES */
+/* IMPORTACIÓN DE FUENTES */
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap');
 
+/* RESETEO Y ESTILOS GENERALES */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Inconsolata', monospace;
+}
 
+html, body {
+    overflow-x: hidden; /* Bloquea el desplazamiento horizontal */
 }
 
 body {
@@ -26,25 +30,24 @@ body {
     border-radius: 8px;
 }
 
+/* ESTILOS DEL HEADER */
 header {
     text-align: center;
     padding: 20px 0;
 }
 
-header h1, header p {
-    margin: 0;
-    padding: 5px;
-}
-
 header h1 {
+    margin: 0;
     font-size: 2em;
 }
 
 header p {
+    margin: 5px 0;
     font-size: 1.2em;
     color: #555;
 }
 
+/* PERFIL */
 .profile {
     text-align: center;
     margin-bottom: 20px;
@@ -54,6 +57,7 @@ header p {
     font-size: 1.1em;
 }
 
+/* SECCIONES GENERALES */
 section {
     margin-bottom: 20px;
 }
@@ -63,20 +67,21 @@ section h2 {
     padding-bottom: 10px;
     font-size: 1.5em;
 }
+
+/* PIE DE PÁGINA */
 footer {
     text-align: center;
     padding: 20px 0;
     font-size: 0.9em;
 }
-/* ANIMACION TYPING */
+
+/* ANIMACIÓN TYPING */
 .typing-container {
-    position: relative;
     width: 100%;
     overflow: hidden;
 }
 
 .container__typing {
-    position: relative;
     display: block;
     width: 100%;
     animation: typing 7s steps(60, end) 1s 1 normal both, blink-caret 0.75s step-end infinite;
@@ -90,11 +95,9 @@ footer {
     padding: 0;
     white-space: nowrap;
     overflow: hidden;
-    display: block; 
     width: 100%;
 }
 
-/* Animación del typing */
 @keyframes typing {
     from { width: 0; }
     to { width: 100%; }
@@ -104,22 +107,24 @@ footer {
     from, to { border-color: transparent; }
     50% { border-color: black; }
 }
-/* SECCION PROYECTOS */
+
+/* TARJETAS DE PROYECTOS */
 .card {
     width: 18rem;
-    height: 100%; 
+    height: 100%;
     display: flex;
     flex-direction: column;
+    margin: 0 auto; /* Centrando las cartas */
 }
 
 .card-img-top {
     width: 100%;
     height: 200px;
-    object-fit: cover; 
+    object-fit: cover;
 }
 
 .card-body {
-    flex-grow: 1; 
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -138,55 +143,159 @@ footer {
     align-self: start;
     margin-top: 10px;
 }
-/* SECCION HABILIDADES */
-.habilidades{
-    padding: 80px 0 100px 0;
+
+/* SECCIÓN HABILIDADES */
+.habilidades {
+    padding: 80px 0 100px;
     text-align: center;
     background-size: cover;
     background-attachment: fixed;
     background-position: center center;
     color: black;
 }
-.habilidades .contenido-seccion{
+
+.habilidades .contenido-seccion {
     max-width: 1000px;
     margin: auto;
     padding: 0 10px;
 }
-.habilidades .contenido-seccion .row{
+
+.habilidades .contenido-seccion .row {
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
 }
-.habilidades .contenido-seccion .row .col{
+
+.habilidades .contenido-seccion .row .col {
     width: 47%;
     text-align: left;
 }
-.habilidades .contenido-seccion .row .col .connt-barra{
-    display: flex;
-    align-items: center;
-}
-.habilidades .contenido-seccion .barra{
+
+.habilidades .contenido-seccion .barra {
     display: flex;
     border: 1px solid black;
     padding: 2px;
     border-radius: 3px;
     margin-right: 10px;
+    max-width: 400px;
 }
-.habilidades .contenido-seccion .barra .e{
+
+.habilidades .contenido-seccion .barra .e {
     background-color: #363636;
     width: 20px;
     height: 30px;
     margin-right: 2px;
 }
+
 /* SECCIÓN CONTACTO */
 .contacto {
-    padding: 80px 0 100px 0;
+    padding: 80px 0 100px;
     text-align: center;
-    background-color: #f9f9f9; 
+    background-color: #f9f9f9;
     color: #333;
 }
 
 .contacto h2 {
     margin-bottom: 40px;
     font-size: 2em;
+}
+
+/* MEDIA QUERIES */
+
+/* Tablet (pantallas menores a 768px) */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    header p {
+        font-size: 1em;
+    }
+
+    section h2 {
+        font-size: 1.2em;
+    }
+
+    .profile p {
+        font-size: 1em;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 20px;
+        text-align: center; /* Centrar el texto dentro de las cartas */
+    }
+
+    .habilidades .contenido-seccion .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .habilidades .contenido-seccion .row .col {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .habilidades .contenido-seccion .barra {
+        width: 80%;
+        max-width: 400px;
+    }
+
+    .habilidades .contenido-seccion .connt-barra {
+        justify-content: center;
+    }
+}
+
+/* Móviles (pantallas menores a 480px) */
+@media only screen and (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 5px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+
+    header h5 {
+        font-size: 0.9em;
+    }
+
+    section h2 {
+        font-size: 1em;
+    }
+
+    .profile p {
+        font-size: 0.9em;
+    }
+
+    .card {
+        width: 100%;
+        text-align: center;
+    }
+
+    .habilidades .contenido-seccion .row .col {
+        width: 100%;
+    }
+
+    .habilidades .contenido-seccion .barra {
+        width: 100%;
+    }
+
+    .btn-secondary {
+        width: 100%;
+    }
+
+    .container__typing p {
+        font-size: 0.5em;
+    }
+    .container__typing li {
+        font-size: 0.8em;
+    }
 }
